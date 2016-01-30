@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour {
     {
         if (timer.time <= 0)
         {
-            GameOver("Time Out! WE LOSES!");
+            GameOver(StringConstants.TIMEOUT);
         }
     }
 
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour {
         }
 
         slider.value += tension + 200/timer.time;
-        anim.SetTrigger("Shake");
+        anim.SetTrigger(StringConstants.SHAKE);
         CheckTensionLoseCondition();
     }
 
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour {
     {
         if (slider.value >= slider.maxValue)
         {
-            GameOver("TENSION! WE LOSES!");
+            GameOver(StringConstants.TENSION_LOSE);
         }
     }
 	// Use this for initialization
@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour {
             gameEnded = true;
             answerText.fontSize = 30;
             answerText.fontStyle = FontStyle.Normal;
-            currentText.text = "I WINS! =^.^= ";
+            currentText.text = StringConstants.WIN;
             timer.SetFreeze(true);
         }
     }
