@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
     public Timer timer;
     public int tension = 10;
     bool gameEnded = false;
+    float gameOverTimer = 2f;
 
     void Awake ()
     {
@@ -23,6 +24,14 @@ public class GameManager : MonoBehaviour {
     {
         CheckTensionLoseCondition();
         CheckTimeOutLoseCondition();
+        if (gameEnded)
+        {
+            gameOverTimer -= Time.deltaTime;
+            if(gameOverTimer <= 0)
+            {
+                Application.LoadLevel("GameOver");
+            }
+        }
     }
 
     void CheckTimeOutLoseCondition()
