@@ -21,13 +21,14 @@ public class GameManager : MonoBehaviour {
 
     void Update()
     {
-        slider.value += 5 / timer.time;
-
         CheckTensionLoseCondition();
+    }
 
-        if (timer.time <= 0 && !gameEnded)
+    void CheckTimeOutLoseCondition()
+    {
+        if (timer.time <= 0)
         {
-            GameOver("Time Out");
+            GameOver("YOU LOSE! Time Out");
         }
     }
 
@@ -38,7 +39,7 @@ public class GameManager : MonoBehaviour {
             return;
         }
 
-        slider.value += tension;
+        slider.value += tension + 200/timer.time;
         anim.SetTrigger("Shake");
         CheckTensionLoseCondition();
     }
@@ -47,7 +48,7 @@ public class GameManager : MonoBehaviour {
     {
         if (slider.value >= slider.maxValue)
         {
-            GameOver("FFSSST! TENSION!");
+            GameOver("YOU LOSE! TENSION!");
         }
     }
 	// Use this for initialization
@@ -68,20 +69,24 @@ public class GameManager : MonoBehaviour {
         currentText.text = newWord;
     }
 
-    public void Win(string message)
+    public void Win()
     {
         if (timer.time > 0)
         {
             gameEnded = true;
-            currentText.text = message;
+            answerText.fontSize = 40;
+            answerText.fontStyle = FontStyle.Normal;
+            currentText.text = "YOU WIN";
             timer.SetFreeze(true);
         }
     }
 
     public void GameOver(string message)
     {
-        gameEnded = true;
-        currentText.text = message;
-        timer.SetFreeze(true);
+        if (!gameEnded) {
+            gameEnded = true;
+            currentText.text = message;
+            timer.SetFreeze(true);
+        }
     }
 }

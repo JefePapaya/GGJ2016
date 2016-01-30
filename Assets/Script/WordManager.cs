@@ -15,7 +15,6 @@ public class WordManager : MonoBehaviour {
     string currentWord; //shuffled Word
     int charIndex = 0;
     public int wordIndex = 0;
-    bool canDisplayText = true;
 
     void Awake() {
     }
@@ -38,11 +37,9 @@ public class WordManager : MonoBehaviour {
             if (Input.GetKeyDown(currentWord[charIndex].ToString().ToLower()))
             {
                 charIndex++;
-                Debug.Log("Correct answer! " + charIndex);
             }
             else if (Input.anyKeyDown)
             {
-                Debug.Log("WROOOOOOOONG MOTHERFUCKER");
                 GameManager.sharedInstance.Mistype();
                 
             }
@@ -64,7 +61,7 @@ public class WordManager : MonoBehaviour {
             }
             else if (wordIndex >= shuffledWords.Length)
             {
-                GameManager.sharedInstance.Win("REACHED DIABOLIC");
+                GameManager.sharedInstance.Win();
             }
         }
     }
