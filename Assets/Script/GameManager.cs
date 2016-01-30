@@ -22,13 +22,14 @@ public class GameManager : MonoBehaviour {
     void Update()
     {
         CheckTensionLoseCondition();
+        CheckTimeOutLoseCondition();
     }
 
     void CheckTimeOutLoseCondition()
     {
         if (timer.time <= 0)
         {
-            GameOver("YOU LOSE! Time Out");
+            GameOver("Time Out! WE LOSES!");
         }
     }
 
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour {
     {
         if (slider.value >= slider.maxValue)
         {
-            GameOver("YOU LOSE! TENSION!");
+            GameOver("TENSION! WE LOSES!");
         }
     }
 	// Use this for initialization
@@ -74,9 +75,9 @@ public class GameManager : MonoBehaviour {
         if (timer.time > 0)
         {
             gameEnded = true;
-            answerText.fontSize = 40;
+            answerText.fontSize = 30;
             answerText.fontStyle = FontStyle.Normal;
-            currentText.text = "YOU WIN";
+            currentText.text = "I WINS! =^.^= ";
             timer.SetFreeze(true);
         }
     }
