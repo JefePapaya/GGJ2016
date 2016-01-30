@@ -1,3 +1,6 @@
+///Phrases for each invoking ritual.
+///Each line contains a new phrase.
+
 Give us food now Diabolicat!
 
 Care, food, cozy, Diabolicat wuvs us.
