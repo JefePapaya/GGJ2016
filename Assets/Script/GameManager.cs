@@ -5,6 +5,7 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
 
     public static GameManager sharedInstance;
+	public Text levelText;
     public Text answerText;
     public Text currentText;
     public Animator cameraShakeAnim;
@@ -17,7 +18,7 @@ public class GameManager : MonoBehaviour {
     bool gameEnded = false;
     bool won = false;
     float gameOverTimer = 2f;
-    float winTimer = 4f;
+    public float winTimer = 4f;
 
 	int diabolicatAnimState = 1;
 
@@ -31,6 +32,8 @@ public class GameManager : MonoBehaviour {
 
     void Start ()
     {
+		Level levelScript = GameObject.FindGameObjectWithTag ("Level").GetComponent<Level> ();
+		levelText.text = levelScript.currentLevel;
         currentText.text = "";
         answerText.text = "";
 
@@ -140,7 +143,7 @@ public class GameManager : MonoBehaviour {
 
     public void Win()
     {
-        if (timer.time > 0)
+		if (timer.time > 0 && !gameEnded)
         {
             won = true;
             gameEnded = true;
@@ -150,7 +153,7 @@ public class GameManager : MonoBehaviour {
             currentText.text = StringConstants.WIN;
             timer.SetFreeze(true);
             SoundManager.sharedInstance.PlaySFX(SoundManager.DIABOLICAT);
-			Invoke("LoadNextLevel", 2f) ;
+			Invoke("LoadNextLevel", winTimer) ;
         }
     }
 
