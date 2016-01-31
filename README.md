@@ -5,7 +5,7 @@ SummoNeko
 
 Cats and their diabolic plans.
 
-This is a **web based 2d game** developed at the *Global Game Jam 2016*, which had "Ritual" as the theme.
+This is a **web based 2d game** developed at the *Global Game Jam 2016*, Global BIND Jam, which had "Ritual" as the theme.
 
 ### Story
 
