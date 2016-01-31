@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class WordManager : MonoBehaviour {
+
+    //public List<string> listOfStrings_en = new List<string>;
+    //public string ritualSentence = listOfStrings_en.(1);
 
     public string ritualSentence;
     public Text currentText;

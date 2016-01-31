@@ -1,0 +1,33 @@
+///Poems for the opening screen of each level.
+///Each block of verses is a new poem.
+
+
+Mice are lovely, devils are cool.
+Cats are lovely, 
+bring me food.
+
+Eat, sleep, prrr
+repeat
+Eatl, sleep, prrr
+repeat
+
+I prrr
+You prrr
+We prrr
+Heuman where’s the food?
+
+Fish, milk, bird
+Swim, drink, fly,
+come to our mouths
+here you can hide.
+
+Sleep all afternoon,
+wake up ever cute,
+run over your human,
+they must pet you.
+
+I has milk,
+you has food, 
+we fight, 
+me wins,
+life’s so good.
