@@ -7,7 +7,9 @@ public class GameManager : MonoBehaviour {
     public static GameManager sharedInstance;
     public Text answerText;
     public Text currentText;
-    public Animator anim;
+    public Animator cameraShakeAnim;
+    public Animator atentionAnim;
+    public Animator diaboliCatAnim;
     public Slider slider;
     public Rune[] runes;
     public Timer timer;
@@ -49,6 +51,7 @@ public class GameManager : MonoBehaviour {
         if (timer.time <= 0 && !gameEnded)
         {
             SoundManager.sharedInstance.PlaySFX(SoundManager.PEEN);
+            currentText.fontSize = 30;
             GameOver(StringConstants.TIMEOUT);
         }
     }
@@ -62,7 +65,10 @@ public class GameManager : MonoBehaviour {
 
         slider.value += tension + 200/timer.time;
         SoundManager.sharedInstance.PlaySFX(SoundManager.MISTAKE);
-        anim.SetTrigger(StringConstants.SHAKE);
+        cameraShakeAnim.SetTrigger(StringConstants.SHAKE);
+        atentionAnim.SetTrigger("DrawAtention");
+        //diaboliCatAnim.SetTrigger("Mistype");
+        //diaboliCatAnim.SetTrigger("NotMystipe");
         CheckTensionLoseCondition();
     }
 
@@ -70,10 +76,13 @@ public class GameManager : MonoBehaviour {
     {
         if (slider.value >= slider.maxValue && !gameEnded)
         {
+            atentionAnim.SetTrigger("AllAtention");
+            currentText.fontSize = 30;
             GameOver(StringConstants.TENSION_LOSE);
         }
     }
 	// Use this for initialization
+    
 	
     public void wordCompleted(int wordIndex, string completedWord)
     {
@@ -81,7 +90,7 @@ public class GameManager : MonoBehaviour {
         {
             return;
         }
-        
+        diaboliCatAnim.SetTrigger("Step" + (wordIndex + 2));
         runes[wordIndex].Appear();
         answerText.text += completedWord + " ";
         
@@ -101,8 +110,9 @@ public class GameManager : MonoBehaviour {
         {
             won = true;
             gameEnded = true;
-            answerText.fontSize = 30;
-            answerText.fontStyle = FontStyle.Normal;
+            answerText.fontStyle = FontStyle.Bold;
+            answerText.alignment = (TextAnchor)TextAlignment.Center;
+            answerText.alignment = TextAnchor.MiddleCenter;
             currentText.text = StringConstants.WIN;
             timer.SetFreeze(true);
             SoundManager.sharedInstance.PlaySFX(SoundManager.DIABOLICAT);
