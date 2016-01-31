@@ -39,6 +39,7 @@ public class WordManager : MonoBehaviour {
         {
             if (Input.GetKeyDown(currentWord[charIndex].ToString().ToLower()))
             {
+                SoundManager.sharedInstance.PlaySFX(SoundManager.SUCCESS);
                 charIndex++;
             }
             else if (Input.anyKeyDown)

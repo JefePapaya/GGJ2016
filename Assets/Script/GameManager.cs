@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
     public Timer timer;
     public int tension = 10;
     bool gameEnded = false;
+    bool won = false;
     float gameOverTimer = 2f;
 
     void Awake ()
@@ -24,7 +25,7 @@ public class GameManager : MonoBehaviour {
     {
         CheckTensionLoseCondition();
         CheckTimeOutLoseCondition();
-        if (gameEnded)
+        if (gameEnded && !won)
         {
             gameOverTimer -= Time.deltaTime;
             if(gameOverTimer <= 0)
@@ -32,12 +33,21 @@ public class GameManager : MonoBehaviour {
                 Application.LoadLevel("GameOver");
             }
         }
+        else if (gameEnded && won)
+        {
+            gameOverTimer -= Time.deltaTime;
+            if (gameOverTimer <= 0)
+            {
+                Application.LoadLevel("MainMenu");
+            }
+        }
     }
 
     void CheckTimeOutLoseCondition()
     {
-        if (timer.time <= 0)
+        if (timer.time <= 0 && !gameEnded)
         {
+            SoundManager.sharedInstance.PlaySFX(SoundManager.PEEN);
             GameOver(StringConstants.TIMEOUT);
         }
     }
@@ -50,13 +60,14 @@ public class GameManager : MonoBehaviour {
         }
 
         slider.value += tension + 200/timer.time;
+        SoundManager.sharedInstance.PlaySFX(SoundManager.MISTAKE);
         anim.SetTrigger(StringConstants.SHAKE);
         CheckTensionLoseCondition();
     }
 
     void CheckTensionLoseCondition()
     {
-        if (slider.value >= slider.maxValue)
+        if (slider.value >= slider.maxValue && !gameEnded)
         {
             GameOver(StringConstants.TENSION_LOSE);
         }
@@ -69,25 +80,31 @@ public class GameManager : MonoBehaviour {
         {
             return;
         }
-
+        
         runes[wordIndex].Appear();
         answerText.text += completedWord + " ";
+        
     }
 
     public void newWord(string newWord)
     {
-        currentText.text = newWord;
+        if (!gameEnded)
+        {
+            currentText.text = newWord;
+        }
     }
 
     public void Win()
     {
         if (timer.time > 0)
         {
+            won = true;
             gameEnded = true;
             answerText.fontSize = 30;
             answerText.fontStyle = FontStyle.Normal;
             currentText.text = StringConstants.WIN;
             timer.SetFreeze(true);
+
         }
     }
 
