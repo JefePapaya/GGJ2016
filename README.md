@@ -30,6 +30,10 @@ Now, you want to complete the right invocation moves before your human sees you!
 
 There might be different versions of the game's rules. Look for version tags in the commit history of this repository.
 
+### Installation Instructions
+
+Download .zip, extract to a fold of your choice, run the .exe file. Enjoy your SummoNeko experience!
+
 ### How to play
 
 Use your keyboard to follow a sequence of letters and summon a devil before your owner finds out or you run out of time.
