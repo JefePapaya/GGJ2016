@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour {
 
 	int diabolicatAnimState = 1;
 
+    public float minRangeEvent = 5f;
+    public float maxRangeEvent = 8f;
+
     void Awake ()
     {
         sharedInstance = this;
@@ -30,6 +33,24 @@ public class GameManager : MonoBehaviour {
     {
         currentText.text = "";
         answerText.text = "";
+
+        Invoke("DistractionEvent", Random.Range(minRangeEvent, maxRangeEvent));
+    }
+
+    private void DistractionEvent()
+    {
+       
+        System.Random random = new System.Random();
+        int randomIndex = random.Next(4, 6);
+        SoundManager.sharedInstance.PlaySFX(randomIndex);
+        slider.value += 200;
+        TriggerDistractionEvent();
+
+    }
+    private void TriggerDistractionEvent()
+    {
+        //SoundManager.sharedInstance.PlaySFX(SoundManager.ALERT);
+        atentionAnim.SetTrigger("DrawAtention");
     }
     void Update()
     {
@@ -73,7 +94,7 @@ public class GameManager : MonoBehaviour {
         slider.value += tension + 200/timer.time;
         SoundManager.sharedInstance.PlaySFX(SoundManager.MISTAKE);
         cameraShakeAnim.SetTrigger(StringConstants.SHAKE);
-        atentionAnim.SetTrigger("DrawAtention");
+        TriggerDistractionEvent();
         diabolicatAnim.SetTrigger("Mistype");
         Invoke("GettingBackToNormal", 0.5f);
         CheckTensionLoseCondition();
