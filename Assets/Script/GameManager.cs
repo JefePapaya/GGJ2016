@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour {
     float gameOverTimer = 2f;
     float winTimer = 4f;
 
-    int state;
+	int diabolicatAnimState = 1;
 
     void Awake ()
     {
@@ -75,13 +75,13 @@ public class GameManager : MonoBehaviour {
         cameraShakeAnim.SetTrigger(StringConstants.SHAKE);
         atentionAnim.SetTrigger("DrawAtention");
         diabolicatAnim.SetTrigger("Mistype");
-        Invoke("GettingBackToNormal", 0.8f);
+        Invoke("GettingBackToNormal", 0.5f);
         CheckTensionLoseCondition();
     }
 
     void GettingBackToNormal()
     {
-        diabolicatAnim.SetTrigger("Step" + state);
+		diabolicatAnim.SetTrigger("State" + diabolicatAnimState);
     }
     void CheckTensionLoseCondition()
     {
@@ -101,8 +101,8 @@ public class GameManager : MonoBehaviour {
         {
             return;
         }
-        diabolicatAnim.SetTrigger("Step" + (wordIndex + 2));
-        state = wordIndex + 2;
+		diabolicatAnimState = wordIndex + 2;
+        diabolicatAnim.SetTrigger("State" + (diabolicatAnimState));
         runes[wordIndex].Appear();
         answerText.text += completedWord + " ";
         
@@ -137,6 +137,8 @@ public class GameManager : MonoBehaviour {
             gameEnded = true;
             currentText.text = message;
             timer.SetFreeze(true);
+			diabolicatAnimState = 1;
+			diabolicatAnim.SetTrigger ("State1");
         }
     }
 }
