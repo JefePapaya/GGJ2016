@@ -1,6 +1,6 @@
 ### GGJ2016
 
-SumoNeko
+SummoNeko
 -----------
 
 Cats and their diabolic plans.

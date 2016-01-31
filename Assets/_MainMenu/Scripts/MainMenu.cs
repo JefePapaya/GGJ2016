@@ -24,9 +24,9 @@ public class MainMenu : MonoBehaviour {
             Application.LoadLevel("Credits");
         }
 
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.S))
         {
-            Application.LoadLevel("History");
+            Application.LoadLevel("Story");
         }
     }
 

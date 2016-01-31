@@ -24,6 +24,11 @@ public class GameManager : MonoBehaviour {
         sharedInstance = this;
     }
 
+    void Start ()
+    {
+        currentText.text = "";
+        answerText.text = "";
+    }
     void Update()
     {
         CheckTensionLoseCondition();
