@@ -39,12 +39,13 @@ public class GameManager : MonoBehaviour {
 
     private void DistractionEvent()
     {
-       
-        System.Random random = new System.Random();
-        int randomIndex = random.Next(4, 6);
-        SoundManager.sharedInstance.PlaySFX(randomIndex);
-        slider.value += 200;
-        TriggerDistractionEvent();
+		if (!gameEnded) {
+			System.Random random = new System.Random ();
+			int randomIndex = random.Next (4, 6);
+			SoundManager.sharedInstance.PlaySFX (randomIndex);
+			slider.value += 200;
+			TriggerDistractionEvent ();
+		}
 
     }
     private void TriggerDistractionEvent()
