@@ -65,14 +65,14 @@ public class GameManager : MonoBehaviour {
                 Application.LoadLevel("GameOver");
             }
         }
-        else if (gameEnded && won)
-        {
-            winTimer -= Time.deltaTime;
-            if (winTimer <= 0)
-            {
-                Application.LoadLevel("MainMenu");
-            }
-        }
+//        else if (gameEnded && won)
+//        {
+//            winTimer -= Time.deltaTime;
+//            if (winTimer <= 0)
+//            {
+//                Application.LoadLevel("MainMenu");
+//            }
+//        }
     }
 
     void CheckTimeOutLoseCondition()
@@ -150,9 +150,14 @@ public class GameManager : MonoBehaviour {
             currentText.text = StringConstants.WIN;
             timer.SetFreeze(true);
             SoundManager.sharedInstance.PlaySFX(SoundManager.DIABOLICAT);
+			Invoke("LoadNextLevel", 2f) ;
         }
     }
 
+	void LoadNextLevel(){
+		Level levelScript = GameObject.FindGameObjectWithTag("Level").GetComponent<Level>();
+		Application.LoadLevel (levelScript.nextLevelName);
+	}
     public void GameOver(string message)
     {
         if (!gameEnded) {
