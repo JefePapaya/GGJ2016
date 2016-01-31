@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
     bool gameEnded = false;
     bool won = false;
     float gameOverTimer = 2f;
+    float winTimer = 4f;
 
     void Awake ()
     {
@@ -35,8 +36,8 @@ public class GameManager : MonoBehaviour {
         }
         else if (gameEnded && won)
         {
-            gameOverTimer -= Time.deltaTime;
-            if (gameOverTimer <= 0)
+            winTimer -= Time.deltaTime;
+            if (winTimer <= 0)
             {
                 Application.LoadLevel("MainMenu");
             }
@@ -104,7 +105,7 @@ public class GameManager : MonoBehaviour {
             answerText.fontStyle = FontStyle.Normal;
             currentText.text = StringConstants.WIN;
             timer.SetFreeze(true);
-
+            SoundManager.sharedInstance.PlaySFX(SoundManager.DIABOLICAT);
         }
     }
 
