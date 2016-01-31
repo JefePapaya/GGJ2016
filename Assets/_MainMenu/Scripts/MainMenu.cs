@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class MainMenu : MonoBehaviour {
-
+/*
     public void ChangeScene(string sceneName){
         SoundManager.sharedInstance.PlaySFX(SoundManager.CLICK);
         Invoke("CallScene", 0.2f);
@@ -11,6 +11,23 @@ public class MainMenu : MonoBehaviour {
     private void CallScene()
     {
         Application.LoadLevel("Level_01");
+    }*/
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)){
+            Application.LoadLevel("Level_01");
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Application.LoadLevel("Credits");
+        }
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            Application.LoadLevel("History");
+        }
     }
 
 }
