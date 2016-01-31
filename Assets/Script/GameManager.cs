@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour {
     public Text currentText;
     public Animator cameraShakeAnim;
     public Animator atentionAnim;
-    public Animator diaboliCatAnim;
+    public Animator diabolicatAnim;
     public Slider slider;
     public Rune[] runes;
     public Timer timer;
@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour {
     bool won = false;
     float gameOverTimer = 2f;
     float winTimer = 4f;
+
+    int state;
 
     void Awake ()
     {
@@ -72,11 +74,15 @@ public class GameManager : MonoBehaviour {
         SoundManager.sharedInstance.PlaySFX(SoundManager.MISTAKE);
         cameraShakeAnim.SetTrigger(StringConstants.SHAKE);
         atentionAnim.SetTrigger("DrawAtention");
-        //diaboliCatAnim.SetTrigger("Mistype");
-        //diaboliCatAnim.SetTrigger("NotMystipe");
+        diabolicatAnim.SetTrigger("Mistype");
+        Invoke("GettingBackToNormal", 0.8f);
         CheckTensionLoseCondition();
     }
 
+    void GettingBackToNormal()
+    {
+        diabolicatAnim.SetTrigger("Step" + state);
+    }
     void CheckTensionLoseCondition()
     {
         if (slider.value >= slider.maxValue && !gameEnded)
@@ -95,7 +101,8 @@ public class GameManager : MonoBehaviour {
         {
             return;
         }
-        diaboliCatAnim.SetTrigger("Step" + (wordIndex + 2));
+        diabolicatAnim.SetTrigger("Step" + (wordIndex + 2));
+        state = wordIndex + 2;
         runes[wordIndex].Appear();
         answerText.text += completedWord + " ";
         
