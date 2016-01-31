@@ -10,8 +10,18 @@ public class MainMenu : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetKeyDown("space")){
+        if (Input.GetKeyDown(KeyCode.Space)){
             Application.LoadLevel("Level_01");
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Application.LoadLevel("Credits");
+        }
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            Application.LoadLevel("History");
         }
     }
 
