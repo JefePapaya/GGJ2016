@@ -1,11 +1,11 @@
-<img src="Assets/Resources/LOGO_ROUND_small.png" align="center" />
+<img src="Assets/Resources/LOGO_ROUND_small.png" align="right" />
 SummoNeko
 -----------
 
 Cats and their diabolic plans.
 
-This is a typing game with 2d graphics developed using Unity3d
-Made at the *Global Game Jam 2016*, Global BIND Jam, which had "Ritual" as the theme
+This is a typing game with 2d graphics developed using Unity3d.
+Made at the *Global Game Jam 2016*, Global BIND Jam, which had "Ritual" as the theme.
 
 ## Story
 
