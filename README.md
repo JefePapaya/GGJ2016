@@ -1,4 +1,4 @@
-<img src="Assets/Resources/LOGO_ROUND_small.png" align="left" />
+<img src="Assets/Resources/LOGO_ROUND_small.png" align="center" />
 SummoNeko
 -----------
 
